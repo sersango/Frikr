@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from photos import views as photos_views
+from users import views as users_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    # Photos URLs
+    url(r'^$', photos_views.home, name='photos_home'),
+    url(r'^photos/(?P<pk>\d+)$', photos_views.detail, name='photo_detail'),
+
+    # Users URLs
+    url(r'^login$', users_views.login, name='user_login'),
+    url(r'^logout$', users_views.logout, name='user_logout')
 ]

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Bienvenido a Frikr - Como Flickr, pero en friki. {% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'photos_home' %}">Home</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'user_logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'user_login' %}">Login</a>
+        {% endif %}
+    </nav>
+    <hr>
+    <section>
+        {% block section %} {% endblock %}
+    </section>
+    <hr>
+    <footer>
+        <small>Frikr Inc&copy; 2016. Todos los derechos reservados.</small>
+    </footer>
+</nav>
+</body>
+</html>
