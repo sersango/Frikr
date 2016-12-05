@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for frikr project.
 
@@ -39,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'frikr',
     'photos',
-    'users'
+    'users',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -122,6 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 # Logs all SQL queries in debug
 LOGGING = {
     'version': 1,
@@ -139,3 +142,14 @@ LOGGING = {
         },
     }
 }
+
+
+# Login URL
+
+LOGIN_URL = '/login'
+
+
+# SWEARWORDS: http://goo.gl/G2nCu7
+
+PROJECT_SWEARWORDS = [u'Abollao', u'Abrazafarolas', u'Afilasables', u'Caracartón',
+                      u'Apollardao', u'Arrastramantas', u'Meapilas', u'Perroflauta']

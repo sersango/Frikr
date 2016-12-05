@@ -15,17 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from photos import views as photos_views
-from users import views as users_views
+from django.contrib.auth.decorators import login_required
+from photos.views import HomeView, DetailView, CreateView, PhotosListView, UserPhotosView
+from users.views import LoginView, LogoutView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     # Photos URLs
-    url(r'^$', photos_views.home, name='photos_home'),
-    url(r'^photos/(?P<pk>\d+)$', photos_views.detail, name='photo_detail'),
+    url(r'^$', HomeView.as_view(), name='photos_home'),
+    url(r'^my-photos/$', login_required(UserPhotosView.as_view()), name='user_photos'),
+    url(r'^photos/$', PhotosListView.as_view(), name='photos_list'),
+    url(r'^photos/(?P<pk>\d+)$', DetailView.as_view(), name='photo_detail'),
+    url(r'^photos/new$', CreateView.as_view(), name='photo_create'),
 
     # Users URLs
-    url(r'^login$', users_views.login, name='user_login'),
-    url(r'^logout$', users_views.logout, name='user_logout')
+    url(r'^login$', LoginView.as_view(), name='user_login'),
+    url(r'^logout$', LogoutView.as_view(), name='user_logout')
 ]
